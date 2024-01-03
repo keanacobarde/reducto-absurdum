@@ -1,4 +1,8 @@
-﻿Greeting();
+﻿using System;
+using DateTime;
+using TimeSpan;
+
+Greeting();
 Menu();
 
 void Greeting() { 
@@ -42,12 +46,19 @@ void Menu() {
 
 class Product
 {
-    public string name = null;
-    public decimal price;
-    public bool available;
-    public string ProductTypeId = null;
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public bool Sold { get; set; }
+    public string ProductTypeId { get; set; }
+    public DateTime DateStocked { get; set; }
 
-
+    public int DaysOnShelf
+    {
+        get { 
+            TimeSpan timeOnShelf = DateTime.Now - DateStocked;
+            return timeOnShelf.Days;
+        }
+    }
 
 }
 
