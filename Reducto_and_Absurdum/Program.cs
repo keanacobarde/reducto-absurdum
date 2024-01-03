@@ -62,7 +62,7 @@ class Globals {
                     ProductFunctions.ViewProducts();
                     break;
                 case "2":
-                    Console.WriteLine("Add a Product");
+                    ProductFunctions.CreateProduct();
                     break;
                 case "3":
                     Console.WriteLine("Delete a Product");
@@ -99,11 +99,39 @@ class Product
 
 class ProductFunctions
 {
+    //CREATE
+    public static void CreateProduct()
+    {
+        //Asking for User Input
+        Console.WriteLine("Please supply the name of the product you wish to add.");
+        string productName = Console.ReadLine();
+        Console.WriteLine("Please supply the price of the product you wish to add");
+        decimal productPrice = Convert.ToDecimal(Console.ReadLine());
+        Console.WriteLine("What is the product type?");
+        string productType = Console.ReadLine();
+
+        //Creating User Input into Object
+        Product ProductToAdd = new Product();
+        ProductToAdd.Name = productName;
+        ProductToAdd.Price = productPrice;
+        ProductToAdd.ProductTypeId = productType;
+
+        Globals.Products.Add(ProductToAdd);
+    
+    }
+
+    // READ 
     public static void ViewProducts() {
-    for (int i = 0; i < Globals.Products.Count; i++) {
+        for (int i = 0; i < Globals.Products.Count; i++)
+        {
             Console.WriteLine($"{i + 1}. {Globals.Products[i].Name}");
         }
     }
+
+    // UPDATE
+
+
+    // DELETE 
 
 
 }
