@@ -1,6 +1,38 @@
 ﻿using System;
+using System.Reflection.PortableExecutable;
+
+
 
 class Globals {
+    public static List<Product> Products = new List<Product>()
+{
+    new Product()
+    {
+        Name = "Wand",
+        Price = 1500.00M,
+        Sold = false,
+        DateStocked = new DateTime(2023, 01, 02),
+        ProductTypeId = "Utility",
+    },
+    new Product()
+    {
+        Name = "Robes",
+        Price = 1230.00M,
+        Sold = false,
+        DateStocked = new DateTime(2023, 01, 02),
+        ProductTypeId = "Clothing",
+    },
+    new Product()
+    {
+        Name = "Cauldron",
+        Price = 1500.00M,
+        Sold = false,
+        DateStocked = new DateTime(2023, 01, 02),
+        ProductTypeId = "Utility",
+    }
+
+};
+
     public static void Greeting()
     {
         string greeting = @"Welcome to Reducto and Absurdum
@@ -27,7 +59,7 @@ class Globals {
                     Console.WriteLine("Goodbye");
                     break;
                 case "1":
-                    Console.WriteLine("View All Products");
+                    ProductFunctions.ViewProducts();
                     break;
                 case "2":
                     Console.WriteLine("Add a Product");
@@ -65,24 +97,24 @@ class Product
 
 }
 
-namespace ProductsDB
+class ProductFunctions
 {
-
-
-
-
+    public static void ViewProducts() {
+    for (int i = 0; i < Globals.Products.Count; i++) {
+            Console.WriteLine($"{i + 1}. {Globals.Products[i].Name}");
+        }
+    }
 
 
 }
 
 
 class Program {
-    static void Main(string[] args)
-    {
-        Globals.Greeting();
-        Globals.Menu();
-    }
-
+static void Main(string[] args)
+{
+    Globals.Greeting();
+    Globals.Menu();
+}
 
 }
 
