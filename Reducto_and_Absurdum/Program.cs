@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Reflection.PortableExecutable;
 
 
@@ -68,7 +69,7 @@ class Globals {
                     Console.WriteLine("Delete a Product");
                     break;
                 case "4":
-                    Console.WriteLine("Update a Product");
+                    ProductFunctions.UpdateProducts();
                     break;
             }
         }
@@ -129,8 +130,23 @@ class ProductFunctions
     }
 
     // UPDATE
+    public static void UpdateProducts()
+    {
+        //get user input from prompt 
+        Console.WriteLine("Provide the name of the product you wish to modify.");
+        string productName = Console.ReadLine();
+        // get the product by a specific search parameter - use where
+        List<Product> userQuery = Globals.Products.Where(prod => prod.Name == productName).ToList();
+        // display the product's properties
+        foreach (Product prod in userQuery) {
+            foreach (PropertyInfo prodInfo in prod.GetType().GetProperties())
+            {
+                Console.WriteLine(prodInfo.GetValue(prod, null).ToString());
+            }
+        }
 
-
+        // target property and edit it
+    }
     // DELETE 
 
 
