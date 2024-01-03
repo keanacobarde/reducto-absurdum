@@ -9,11 +9,11 @@ class Globals {
 {
     new Product()
     {
-        Name = "Wand",
+        Name = "Dragonfire Wand",
         Price = 1500.00M,
         Sold = false,
         DateStocked = new DateTime(2023, 01, 02),
-        ProductTypeId = "Utility",
+        ProductTypeId = "Wands",
     },
     new Product()
     {
@@ -21,7 +21,7 @@ class Globals {
         Price = 1230.00M,
         Sold = false,
         DateStocked = new DateTime(2023, 01, 02),
-        ProductTypeId = "Clothing",
+        ProductTypeId = "Apparel",
     },
     new Product()
     {
@@ -29,8 +29,37 @@ class Globals {
         Price = 1500.00M,
         Sold = false,
         DateStocked = new DateTime(2023, 01, 02),
-        ProductTypeId = "Utility",
+        ProductTypeId = "Potions",
     }
+
+};
+
+    public static List<ProductCategory> ProductCategories = new List<ProductCategory>()
+{
+    new ProductCategory()
+    {
+        Name = "Apparel",
+        Id = "1"
+    
+    },
+    new ProductCategory()
+    {
+        Name = "Potions",
+        Id = "2"
+
+    },
+    new ProductCategory()
+    {
+        Name = "Enchanted Objects",
+        Id = "3"
+
+    },
+    new ProductCategory()
+    {
+        Name = "Wands",
+        Id = "4"
+
+    },
 
 };
 
@@ -98,6 +127,13 @@ class Product
 
 }
 
+class ProductCategory
+{ 
+    public string Name { get; set; }
+    public string Id { get; set; }
+
+}
+
 class ProductFunctions
 {
     //CREATE
@@ -141,7 +177,7 @@ class ProductFunctions
         foreach (Product prod in userQuery) {
             foreach (PropertyInfo prodInfo in prod.GetType().GetProperties())
             {
-                Console.WriteLine(prodInfo.GetValue(prod, null).ToString());
+                Console.WriteLine($"{prodInfo.Name}:{prodInfo.GetValue(prod, null).ToString()}");
             }
         }
 
