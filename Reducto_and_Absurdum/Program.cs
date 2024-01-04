@@ -1,150 +1,21 @@
 ﻿using System;
+using System.Reflection;
 using System.Reflection.PortableExecutable;
 
-
-
-class Globals {
-    public static List<Product> Products = new List<Product>()
+namespace Reducto_and_Absurdum
 {
-    new Product()
+    class Program
     {
-        Name = "Wand",
-        Price = 1500.00M,
-        Sold = false,
-        DateStocked = new DateTime(2023, 01, 02),
-        ProductTypeId = "Utility",
-    },
-    new Product()
-    {
-        Name = "Robes",
-        Price = 1230.00M,
-        Sold = false,
-        DateStocked = new DateTime(2023, 01, 02),
-        ProductTypeId = "Clothing",
-    },
-    new Product()
-    {
-        Name = "Cauldron",
-        Price = 1500.00M,
-        Sold = false,
-        DateStocked = new DateTime(2023, 01, 02),
-        ProductTypeId = "Utility",
-    }
-
-};
-
-    public static void Greeting()
-    {
-        string greeting = @"Welcome to Reducto and Absurdum
-    Your one-stop shop for all your witchcraft and wizardry needs";
-        Console.WriteLine(greeting);
-    }
-
-    public static void Menu()
-    {
-        string choice = null;
-        while (choice != "0")
+        static void Main(string[] args)
         {
-            Console.WriteLine(@"Choose an option: 
-                      0. Exit
-                      1. View All Products
-                      2. Add a Product
-                      3. Delete a Product
-                      4. Update a Product");
-            choice = Console.ReadLine();
-
-            switch (choice)
-            {
-                case "0":
-                    Console.WriteLine("Goodbye");
-                    break;
-                case "1":
-                    ProductFunctions.ViewProducts();
-                    break;
-                case "2":
-                    ProductFunctions.CreateProduct();
-                    break;
-                case "3":
-                    Console.WriteLine("Delete a Product");
-                    break;
-                case "4":
-                    Console.WriteLine("Update a Product");
-                    break;
-            }
+            Globals.Greeting();
+            Globals.Menu();
         }
 
     }
 
-
-
-}
-class Product
-{
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-    public bool Sold { get; set; }
-    public string ProductTypeId { get; set; }
-    public DateTime DateStocked { get; set; }
-
-    public int DaysOnShelf
-    {
-        get
-        {
-            TimeSpan timeOnShelf = DateTime.Now - DateStocked;
-            return timeOnShelf.Days;
-        }
-    }
-
 }
 
-class ProductFunctions
-{
-    //CREATE
-    public static void CreateProduct()
-    {
-        //Asking for User Input
-        Console.WriteLine("Please supply the name of the product you wish to add.");
-        string productName = Console.ReadLine();
-        Console.WriteLine("Please supply the price of the product you wish to add");
-        decimal productPrice = Convert.ToDecimal(Console.ReadLine());
-        Console.WriteLine("What is the product type?");
-        string productType = Console.ReadLine();
-
-        //Creating User Input into Object
-        Product ProductToAdd = new Product();
-        ProductToAdd.Name = productName;
-        ProductToAdd.Price = productPrice;
-        ProductToAdd.ProductTypeId = productType;
-
-        Globals.Products.Add(ProductToAdd);
-    
-    }
-
-    // READ 
-    public static void ViewProducts() {
-        for (int i = 0; i < Globals.Products.Count; i++)
-        {
-            Console.WriteLine($"{i + 1}. {Globals.Products[i].Name}");
-        }
-    }
-
-    // UPDATE
-
-
-    // DELETE 
-
-
-}
-
-
-class Program {
-static void Main(string[] args)
-{
-    Globals.Greeting();
-    Globals.Menu();
-}
-
-}
 
 
 
