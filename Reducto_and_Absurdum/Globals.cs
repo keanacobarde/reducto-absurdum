@@ -83,7 +83,8 @@ namespace Reducto_and_Absurdum
                       1. View All Products
                       2. Add a Product
                       3. Delete a Product
-                      4. Update a Product");
+                      4. Update a Product
+                      5. Search Products By Category");
                 choice = Console.ReadLine();
 
                 switch (choice)
@@ -102,6 +103,9 @@ namespace Reducto_and_Absurdum
                         break;
                     case "4":
                         ProductFunctions.UpdateProducts();
+                        break;
+                    case "5":
+                        CategoryFunctions.CategoryFind();
                         break;
                 }
             }
