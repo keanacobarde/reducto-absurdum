@@ -50,16 +50,21 @@ namespace Reducto_and_Absurdum
 
             while (choice != "0")
             {
-                // loop through products but create a ReadLine
-                Console.WriteLine("0. Goodbye");
-                for (int i = 0; i < Globals.Products.Count; i++)
+                try
                 {
-                    Console.WriteLine($"{i + 1}. {Globals.Products[i].Name}");
+                    // loop through products but create a ReadLine
+                    Console.WriteLine("0. Goodbye");
+                    for (int i = 0; i < Globals.Products.Count; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {Globals.Products[i].Name}");
 
+                    }
+                    choice = Console.ReadLine();
+                    Globals.Products.RemoveAt(Int32.Parse(choice));
                 }
-                choice = Console.ReadLine();
-
-                Globals.Products.RemoveAt(Int32.Parse(choice) - 1);
+                catch {
+                    break;
+                }
 
             }
         }
